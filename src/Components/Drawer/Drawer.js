@@ -1,27 +1,24 @@
 import React from 'react'
 
-function Drawer() {
+function Drawer({onClose, items = []}) {
   return (
-    <div className="overlay" style={{display: 'none'}}>
+    <div className="overlay">
     <div className="drawer">
-          <h2 className="mb-20 d-flex justify-between align-center ">Корзина<img className='remove-btn cu-p' src="img/remove.svg" alt='remove'/></h2>
+          <h2 className="mb-20 d-flex justify-between align-center ">Корзина<img className='remove-btn cu-p' src="img/remove.svg" alt='remove' onClick={onClose}/></h2>
           <div className="cartItemContainer">
-          <div className="cartItem d-flex align-center mb-20">
-            <div className="cartItemImg mr-20" style={{backgroundImage: 'url(img/green_blazer.png)'}} />
+          
+          {items.map((obj)=>{return(
+            <div className="cartItem d-flex align-center mb-20">
+            <div className="cartItemImg mr-20" style={{backgroundImage: `url(${obj.img})`}} />
             <div className="mr-20">
-              <p>Мужские Кроссовки Nike Air Max 270</p>
-              <b>12 999 rub</b>
+              <p>{obj.title}</p>
+              <b>{obj.price} rub.</b>
             </div>
             <img className='remove-btn' src="img/remove.svg" alt='remove'/>
           </div>
-          <div className="cartItem d-flex align-center mb-20">
-            <div className="cartItemImg mr-20" style={{backgroundImage: 'url(img/green_blazer.png)'}} />
-            <div className="mr-20">
-              <p>Мужские Кроссовки Nike Air Max 270</p>
-              <b>12 999 rub</b>
-            </div>
-            <img className='remove-btn' src="img/remove.svg" alt='remove'/>
-          </div>
+          )
+          })}
+
           </div>
           <div className="cartTotalBlock">
           <ul className="cartTotalBlock">
