@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 
     function Card(props){
-      const {onPlus, title, img, price} = props
+      const {onPlus,onFavorite, title, img, price} = props
       const [isAdded, setIsAdded] = useState(false);
+      const [isFavorite, setIsFavorite] = useState(false)
       
 
       const onClickPlus = () =>{
@@ -10,10 +11,14 @@ import React, {useState} from "react";
         setIsAdded(!isAdded)
       }
       
+      const onClickFavorite = () =>{
+        onFavorite({price, img, title})
+        setIsFavorite(!isFavorite)
+      }
         return(
             <div className="card">
-              <div className="favorite">
-                <img src="img/heart-unliked.svg" alt="unliked"/>
+              <div className="favorite" onClick={onClickFavorite}>
+                <img src={isFavorite ? "img/heart-liked.svg" : "img/heart-unliked.svg"} alt="unliked"/>
               </div>
               
               <img src={img} width={133} height={112} alt=''/>
